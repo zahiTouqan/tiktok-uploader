@@ -35,10 +35,10 @@ def get_browser(name: str = 'chrome', options=None, *args, **kwargs) -> webdrive
     if service:
         # chromedriver_path = '/usr/bin/chromedriver'
         # driver = webdriver.Chrome(options=options, service=ChromeService(chromedriver_path))
-	driver = uc.Chrome(options=options)
+        driver = uc.Chrome(options=options)
     else:
         # driver = webdriver.Chrome(options=options)
-	driver = uc.Chrome(options=options)
+        driver = uc.Chrome(options=options)
 
     driver.implicitly_wait(config['implicit_wait'])
 
