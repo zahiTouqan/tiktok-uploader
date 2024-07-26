@@ -223,6 +223,7 @@ def upload_videos(
         if on_complete is callable:  # calls the user-specified on-complete function
             on_complete(video)
 
+    driver.delete_all_cookies()
     if config["quit_on_end"]:
         driver.quit()
 
