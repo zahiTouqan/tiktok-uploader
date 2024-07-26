@@ -198,7 +198,7 @@ defaults = {
 
 
 services = {
-    'chrome': lambda : ChromeService(ChromeDriverManager(driver_version='127').install()),
+    'chrome': lambda : ChromeService(ChromeDriverManager(driver_version='126').install()),
     'firefox': lambda : FirefoxService(GeckoDriverManager().install()),
     'edge': lambda : EdgeService(EdgeChromiumDriverManager().install()),
 }
