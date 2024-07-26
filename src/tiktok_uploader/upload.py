@@ -7,6 +7,7 @@ upload_video : Uploads a single TikTok video
 upload_videos : Uploads multiple TikTok videos
 """
 
+import os
 from os.path import abspath, exists
 from typing import List
 import time
@@ -15,6 +16,7 @@ import datetime
 import threading
 
 from selenium.webdriver.common.by import By
+from tiktok_captcha_solver import SeleniumSolver
 
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
@@ -223,7 +225,6 @@ def upload_videos(
         if on_complete is callable:  # calls the user-specified on-complete function
             on_complete(video)
 
-    driver.delete_all_cookies()
     if config["quit_on_end"]:
         driver.quit()
 
@@ -252,6 +253,9 @@ def complete_upload_form(
     """
     _go_to_upload(driver)
     #  _remove_cookies_window(driver)
+
+    sadcaptcha = SeleniumSolver(driver, os.getenv("SADCAPTCHA_API_KEY"))
+    sadcaptcha.solve_captcha_if_present()
 
     upload_complete_event = threading.Event()
 
